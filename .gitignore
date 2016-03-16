@@ -1,0 +1,9 @@
+*.pyc
+/*env*/
+docs/_build
+*.sqlite3
+*~
+*.log
+.idea/
+media/
+*.rdb
