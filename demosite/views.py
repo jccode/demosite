@@ -9,5 +9,6 @@ def index(request):
 
 def register_success(request, username):
     domain_may_with_port = request.META.get("HTTP_HOST") or request.META.get("SERVER_NAME")
-    url = "{0}.{1}".format(username, domain_may_with_port)
+    schema = "http" if not request.is_secure() else "https"
+    url = "{0}://{1}.{2}".format(schema, username, domain_may_with_port)
     return render(request, "register_success.html", {"url": url})
