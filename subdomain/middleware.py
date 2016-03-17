@@ -5,7 +5,7 @@ from django.shortcuts import redirect
 from django.contrib.auth.models import User
 from subdomain.models import Subdomain
 from django.http.response import HttpResponseRedirect
-from demosite import urls as frontend_urls
+
 
 class RedirectMiddleware(object):
     """
@@ -43,7 +43,6 @@ class RedirectMiddleware(object):
         url = "{0}://{1}{2}".format(schema, default_domain+":"+port if port else default_domain, route)
         print "Redirect to %s" % url
         return HttpResponseRedirect(url)
-
 
 
 class AccountMiddleware(object):
