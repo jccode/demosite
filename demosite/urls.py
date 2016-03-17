@@ -23,7 +23,7 @@ from demosite import views
 urlpatterns = [
     url(r'^$', views.index, name='index'),
     url(r'^register/done/(?P<username>\w{0,50})$', views.register_success, name='register_done'),
-    url(r'^register/', CreateView.as_view(template_name='register.html', form_class=UserCreationForm, success_url='/register/done/?username={username}')),
+    url(r'^register/', CreateView.as_view(template_name='register.html', form_class=UserCreationForm, success_url='/register/done/{username}')),
     url(r'^accounts/', include('django.contrib.auth.urls')),
     url(r'^admin/', admin.site.urls),
 ]
