@@ -33,7 +33,7 @@ class RedirectMiddleware(object):
         pieces = domain.split(".")
         subdomain = pieces[0] # join all but primary domain
         default_domain = Site.objects.get(id=settings.SITE_ID).domain
-        if domain in {default_domain, "localhost"}:
+        if domain in {default_domain, "localhost", "127.0.0.1"}:
             return None
         try:
             route = Subdomain.objects.get(name=subdomain).url
@@ -69,7 +69,7 @@ class AccountMiddleware(object):
 
         default_domain = Site.objects.get(id=settings.SITE_ID).domain
         redirect_path = "{0}://{1}{2}".format(schema, default_domain+":"+port if port else default_domain, path)
-        if domain == default_domain:
+        if domain in {default_domain, "localhost", "127.0.0.1"}:
             return None
         try:
             resolve(path)
